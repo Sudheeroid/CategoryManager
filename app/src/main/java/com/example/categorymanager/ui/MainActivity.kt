@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         println("MainActivityComponentActivity1")
-               setContent {
+        setContent {
             CategoryManagerTheme {
                 // A surface container using the 'background' color from the theme
                 Scaffold(
@@ -38,22 +38,26 @@ class MainActivity : ComponentActivity() {
                             title = { Text("Category Manager") },
                             navigationIcon = {
                                 IconButton(onClick = { finish() }) {
-                                    Icon(Icons.Filled.ArrowBack, contentDescription = "Menu")
+                                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Menu")
                                 }
                             },
                         )
-                    }
-                            ,modifier = Modifier.fillMaxSize())
+                    }, modifier = Modifier.fillMaxSize()
+                )
                 { innerPadding ->
+
                     Column(modifier = Modifier.fillMaxSize()) {
+
                         val navController = rememberNavController()
+
                         NavHost(
                             navController = navController,
                             startDestination = "categories",
                             Modifier.padding(innerPadding)
                         ) {
                             composable("categories") {
-                                CategoryListScreen(navController)
+
+                            CategoryListScreen(navController)
 
                             }
                             composable("items/{categoryId}") { backStackEntry ->
@@ -69,4 +73,5 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 }
