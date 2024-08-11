@@ -1,43 +1,139 @@
-1. MainActivity
-Summary: The entry point of the app that sets up the user interface using Jetpack Compose. It contains the navigation logic for moving between the CategoryListScreen and CategoryItemsScreen.
-Use: Hosts the navigation logic and sets up the TopAppBar with a back button to navigate back or close the activity.
+About the Category Management Application
 
-2. TodoListApp
-Summary: The custom Application class annotated with @HiltAndroidApp, which sets up Hilt dependency injection for the app.
-Use: Provides the base context for Hilt's dependency injection across the entire app.
+Features
+1. Category Management:
+   - List of categories (e.g., Shopping, Work, Misc).
+   - Add new categories.
+   - Edit existing categories.
+   - Delete categories.
 
-3. CategoryViewModel
-Summary: The ViewModel responsible for managing the UI-related data for categories in a lifecycle-conscious way. It handles fetching, adding, deleting, and updating categories.
-Use: Provides the data and logic for the CategoryListScreen and is used to interact with the repository layer.
+2. Todo Item Management:
+   - View list of todo items associated with each category.
+   - Add new todo items.
+   - Edit existing todo items.
+   - Delete todo items.
+   - Mark todo items as Pending/Done.
 
-7. CategoryRepository
-Summary: The repository that abstracts access to multiple data sources, specifically the local database for categories.
-Use: Serves as the single source of truth for category data and provides methods to get, add, and delete categories.
+3. Data Persistence:
+   - Store categories and todo items using a local database (Room).
 
-4. CategoryListScreen
-Summary: A Composable function that displays a list of categories and allows the user to add or delete categories.
-Use: Handles the UI for the main screen, displaying all categories and offering buttons for adding or deleting categories.
+4. Search Functionality:
+   - Search categories and todo items.
 
-5. CategoryItemsScreen
-Summary: A Composable function that displays the items within a selected category, allowing the user to add, modify, delete, or mark items as done.
-Use: Handles the UI for displaying and managing items within a selected category.
+5. UI/UX:
+   - Use Jetpack Compose for a modern and responsive UI.
+   - Floating Action Buttons for adding categories and todo items.
 
-6. CategoryDao
-Summary: The Data Access Object (DAO) interface for interacting with the Category table in the Room database.
-Use: Provides methods for inserting, deleting, and querying categories in the local database.
+---
 
-7. Category
-Summary: A data class representing a category in the app, containing properties like id and name.
-Use: Serves as the model for categories, used across the app's ViewModel, Repository, and UI layers.
+ Tech Stack
 
-8. CategoryDatabase
-Summary: The Room database class that contains the database holder and serves as the main access point for the underlying connection to the app's persisted data.
-Use: Manages the database setup and provides DAOs to the app.
+1. Kotlin: Programming language for Android development.
+2. Jetpack Compose: UI toolkit for building native Android UIs.
+3. ViewModel: Architecture component for managing UI-related data lifecycle-consciously.
+4. Room: Local database for storing data.
+5. Hilt: Dependency injection library for Android.
+6. Espresso: UI testing framework.
+7. JUnit: Unit testing framework.
+8. Navigation Component: For handling navigation between screens.
 
-9. Hilt Modules (e.g., DatabaseModule)
-Summary: Modules annotated with @Module and @InstallIn that provide dependencies for Hilt, such as the database instance and DAOs.
-Use: Configures and provides the necessary dependencies for dependency injection throughout the app.
+---
 
-10. CategoryManagerTheme
-Summary: A Composable function that applies the app's theme and styling.
-Use: Ensures consistent styling across all UI components in the app.
+ Installation
+
+ Prerequisites
+- Android Studio (latest stable version)
+- Kotlin (version compatible with your Android Studio)
+
+ Steps
+
+1. Clone the Repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   ```
+
+2. Navigate to Project Directory:
+   ```bash
+   cd your-repo-name
+   ```
+
+3. Open Project in Android Studio:
+   - Launch Android Studio.
+   - Select File > Open and choose the project directory.
+
+4. Sync Gradle:
+   - Android Studio will prompt you to sync Gradle. Click Sync Now.
+
+5. Build the Project:
+   - Click on Build > Rebuild Project to ensure everything is set up correctly.
+
+6. Run the App:
+   - Connect an Android device or start an emulator.
+   - Click Run (green play button) to build and run the app on your device or emulator.
+
+---
+
+ Usage
+
+ Starting the App
+- Open the app to see the Category List Screen.
+- From the Category List Screen, you can:
+  - Add a new category using the Floating Action Button (FAB).
+  - Select a category to view its associated todo items.
+  - Use the search functionality to find specific categories.
+
+ Managing Categories
+- Click the Add button to create a new category.
+- Click on a category to view and manage todo items.
+- Click the Delete icon next to a category to remove it.
+
+ Managing Todo Items
+- While viewing a category, click the Add button to create a new todo item.
+- Use the list to mark items as Pending/Done.
+- Click the Delete icon next to a todo item to remove it.
+
+---
+
+ Code Structure
+com.example.categorymanager
+├── data
+│   ├── db
+│   │   ├── AppDatabase.kt
+│   │   ├── CategoryDao.kt
+│   │   ├── CategoryEntity.kt
+│   │   ├── ItemDao.kt
+│   │   ├── ItemEntity.kt
+├── di
+│   ├── AppModule.kt
+├── ui
+│   ├── MainActivity.kt
+│   ├── CategoryListScreen.kt
+│   ├── CategoryItemsScreen.kt
+├── viewmodel
+│   ├── CategoryViewModel.kt
+│   ├── ItemViewModel.kt
+└── CategorymanagerApp.kt
+
+ Project Directory
+- `app/`: Contains the main application code.
+  - `src/main/java/com/example/todolistapp/`:
+    - `model/`: Data models (e.g., `Category.kt`, `TodoItem.kt`).
+    - `repository/`: Data repository classes for accessing data.
+    - `ui/`:
+     - `screen/`: Composables for different screens (e.g., `CategoryListScreen.kt`, `TodoListScreen.kt`).
+    - `viewmodel/`: ViewModel classes (e.g., `CategoryViewModel.kt`, `TodoItemViewModel.kt`).
+    - `navigation/`: Navigation setup and configurations.
+  - `src/main/res/`: Resources such as layouts, strings, and themes.
+  - `src/main/AndroidManifest.xml`: AndroidManifest file with app configurations.
+
+ Key Files
+- `MainActivity.kt`: Entry point of the application. Sets up the navigation and displays the initial screen.
+- `CategoryViewModel.kt`: Manages category-related data and interactions.
+- `TodoItemViewModel.kt`: Manages todo item-related data and interactions.
+- `CategoryListScreen.kt`: Composable for displaying and managing categories.
+- `TodoListScreen.kt`: Composable for displaying and managing todo items within a category.
+- `TodoDatabase.kt`: Defines the Room database and DAOs.
+
+ Build Configuration
+- `build.gradle.kts`: Defines dependencies and build settings.
+- `libs.versions.toml`: Manages dependency versions for the project.
