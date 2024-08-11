@@ -1,7 +1,6 @@
 package com.example.categorymanager.ui
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -35,7 +34,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,7 +55,6 @@ fun CategoryListScreen(
     var newCategoryName = remember { mutableStateOf("") }
 
     if (categories.value.isEmpty()) {
-        Toast.makeText(LocalContext.current, "No categories found", Toast.LENGTH_SHORT).show()
         Log.d("CategoryListScreen", "No categories found")
     } else {
         Log.d("CategoryListScreen", "Categories loaded: ${categories.value.size}")
